@@ -1,0 +1,125 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#424242">
+
+    <ImageView
+        android:id="@+id/imgPicture"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/androidman"
+        android:layout_alignParentTop="true"
+        android:layout_margin="30dp"
+        />
+
+    <TextView
+        android:id="@+id/lblTitle"
+        android:text="Personal Information"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imgPicture"
+        android:textSize="22sp"
+        android:textColor="#FFFFFF"
+        android:gravity="center"
+        />
+
+    <TextView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/imgPicture"
+        android:layout_alignBottom="@id/imgPicture"
+        android:layout_toRightOf="@id/imgPicture"
+        android:layout_marginLeft="1dp"
+        android:gravity="center_vertical"
+        android:text="Raegan Hart"
+        android:textSize="32sp"
+        android:textColor="#2196F3"
+        />
+
+    <ImageView
+        android:id="@+id/imgBirthday"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/birthday"
+        android:layout_below="@id/lblTitle"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/imgBirthday"
+        android:layout_alignBottom="@id/imgBirthday"
+        android:layout_toRightOf="@id/imgBirthday"
+        android:layout_marginLeft="15dp"
+        android:gravity="center_vertical"
+        android:text="18th December"
+        android:textSize="16sp"
+        android:textColor="#2196F3"
+        />
+
+    <ImageView
+        android:id="@+id/imgLocation"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/location"
+        android:layout_below="@id/imgBirthday"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/imgLocation"
+        android:layout_alignBottom="@id/imgLocation"
+        android:layout_toRightOf="@id/imgLocation"
+        android:layout_marginLeft="15dp"
+        android:gravity="center_vertical"
+        android:text="Bath, England"
+        android:textSize="16sp"
+        android:textColor="#2196F3" />
+
+    <ImageView
+        android:id="@+id/imgWorld"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/world"
+        android:layout_below="@id/imgLocation"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/imgWorld"
+        android:layout_alignBottom="@id/imgWorld"
+        android:layout_toRightOf="@id/imgWorld"
+        android:layout_marginLeft="15dp"
+        android:gravity="center_vertical"
+        android:text="www.rharttech.com"
+        android:textSize="16sp"
+        android:textColor="#2196F3" />
+    <ImageView
+        android:id="@+id/imgTwitter"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/twitter"
+        android:layout_below="@id/imgWorld"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/imgTwitter"
+        android:layout_alignBottom="@id/imgTwitter"
+        android:layout_toRightOf="@id/imgTwitter"
+        android:layout_marginLeft="15dp"
+        android:gravity="center_vertical"
+        android:text="raeghart89"
+        android:textSize="16sp"
+        android:textColor="#2196F3" />
+
+
+</RelativeLayout>
