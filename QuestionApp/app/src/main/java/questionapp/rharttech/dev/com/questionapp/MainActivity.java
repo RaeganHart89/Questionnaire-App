@@ -61,6 +61,8 @@ public class MainActivity extends ActionBarActivity {
             public void onClick(View v) {
                 Toast.makeText(MainActivity.this, "Wrong!!", Toast.LENGTH_SHORT).show();
 
+                determineButtonPress(false);
+
             }
         });
         btnTrue.setOnClickListener(new View.OnClickListener() {
@@ -89,15 +91,15 @@ public class MainActivity extends ActionBarActivity {
            questions = new ArrayList<>();
 
            questions.add(new QuestionObject("Is the capital of England, London?", true, R.drawable.london));
-           questions.add(new QuestionObject("Is the capital of Germany, Berlin", true, R.drawable.berlin));
-           questions.add(new QuestionObject("Is the capital of England London", true, R.drawable.london));
-           questions.add(new QuestionObject("Is the capital of England London", true, R.drawable.london));
-           questions.add(new QuestionObject("Is the capital of England London", true, R.drawable.london));
-           questions.add(new QuestionObject("Is the capital of England London", true, R.drawable.london));
-           questions.add(new QuestionObject("Is the capital of England London", true, R.drawable.london));
-           questions.add(new QuestionObject("Is the capital of England London", true, R.drawable.london));
-           questions.add(new QuestionObject("Is the capital of England London", true, R.drawable.london));
-           questions.add(new QuestionObject("Is the capital of England London", true, R.drawable.london));
+           questions.add(new QuestionObject("Is the capital of Germany, Berlin?", true, R.drawable.berlin));
+           questions.add(new QuestionObject("Is the capital of Australia, Perth?", false, R.drawable.london));
+           questions.add(new QuestionObject("Is the capital of America, Washington?", true, R.drawable.london));
+           questions.add(new QuestionObject("Is the capital of Brazil, Rio de Janeiro?", false, R.drawable.london));
+           questions.add(new QuestionObject("Is the capital of France, Paris", true, R.drawable.london));
+           questions.add(new QuestionObject("Is the capital of Russia, Sochi?", false, R.drawable.london));
+           questions.add(new QuestionObject("Is the capital of Iceland, Reykjavik?", true, R.drawable.london));
+           questions.add(new QuestionObject("Is the capital of China, Shanghai?", false, R.drawable.london));
+           questions.add(new QuestionObject("Is the capital of India, New Delhi?", true, R.drawable.london));
 
     }
      private void setUpQuestion(){
@@ -127,11 +129,13 @@ public class MainActivity extends ActionBarActivity {
         if (answer == expectedAnswer) {
             //you were right
             Toast.makeText(MainActivity.this, "Correct!!", Toast.LENGTH_SHORT).show();
+
+            score ++;
         }else {
             //you were wrong
 
             Toast.makeText(MainActivity.this, "Wrong!!", Toast.LENGTH_SHORT).show();
-            score ++;
+
         }
 
         setUpQuestion();
@@ -141,7 +145,7 @@ public class MainActivity extends ActionBarActivity {
 
         final AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this)
                 .setTitle("Congratulations")
-                .setMessage("You Scored" + score + " points this round! ")
+                .setMessage("You scored " + score + " points this round! ")
                 .setNeutralButton("Ok", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
 
