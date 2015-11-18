@@ -30,12 +30,16 @@ public class IntroductionActivity extends ActionBarActivity {
         btnPlay.setOnClickListener (new View.OnClickListener(){
             @Override
           public void onClick(View v){
+                Intent i = new Intent(IntroductionActivity.this, MainActivity.class);
+                startActivity(i);
 
             }
         });
         btnHighScore.setOnClickListener (new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                Intent i = new Intent(IntroductionActivity.this, HighScoreActivity.class);
+                startActivity(i);
 
             }
         });

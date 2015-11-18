@@ -43,4 +43,15 @@
         android:textSize="24sp"
         android:padding="10dp"/>
 
+    <TextView
+        android:id="@+id/InGameScore"
+        android:textColor="#FFFFFF"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_below="@id/btnFalse"
+        android:textSize="22sp"
+        android:gravity="center"
+        />
+
 </RelativeLayout>

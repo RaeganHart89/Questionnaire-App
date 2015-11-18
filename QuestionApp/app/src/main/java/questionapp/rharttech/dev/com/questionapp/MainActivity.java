@@ -27,13 +27,11 @@ public class MainActivity extends ActionBarActivity {
     private Button btnFalse;
     private TextView lblQuestion;
     private ImageView imgPicture;
-
     private List<QuestionObject> questions;
-
     private QuestionObject currentQuestion;
     private int index;
-
     private int score;
+    private TextView InGameScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +43,7 @@ public class MainActivity extends ActionBarActivity {
         imgPicture = (ImageView) findViewById(R.id.imgPicture);
         btnFalse = (Button) findViewById(R.id.btnFalse);
         btnTrue = (Button) findViewById(R.id.btnTrue);
+        InGameScore = (TextView)findViewById(R.id.InGameScore);
 
         //set questionnaire text
         lblQuestion.setText("Is my name Raegan?");
@@ -62,7 +61,6 @@ public class MainActivity extends ActionBarActivity {
                 Toast.makeText(MainActivity.this, "Wrong!!", Toast.LENGTH_SHORT).show();
 
                 determineButtonPress(false);
-
             }
         });
         btnTrue.setOnClickListener(new View.OnClickListener() {
@@ -71,23 +69,16 @@ public class MainActivity extends ActionBarActivity {
                 Toast.makeText(MainActivity.this, "Correct!!", Toast.LENGTH_SHORT).show();
 
                 determineButtonPress(true);
-
             }
 
         });
                generateQuestions();
-
                setUpQuestion();
-
                Paper.init(this);
-
-
-
-
     }
 
      private void generateQuestions() {
-
+           Log.d("Raegan_App", "Reached generateQuestions");
            questions = new ArrayList<>();
 
            questions.add(new QuestionObject("Is the capital of England, London?", true, R.drawable.london));
@@ -100,20 +91,19 @@ public class MainActivity extends ActionBarActivity {
            questions.add(new QuestionObject("Is the capital of Iceland, Reykjavik?", true, R.drawable.london));
            questions.add(new QuestionObject("Is the capital of China, Shanghai?", false, R.drawable.london));
            questions.add(new QuestionObject("Is the capital of India, New Delhi?", true, R.drawable.london));
-
+           Log.d("Raegan_App", "Completed generateQuestions");
     }
      private void setUpQuestion(){
 
          if (index == questions.size()){
              //they've used all their questions time to end the game
-             Log.d("Question_App", "Ended all questions");
+             Log.d("Raegan_App", "Ended all questions");
 
              endGame();
          }else {
              //set up a normal question
 
              currentQuestion = questions.get(index);
-
              lblQuestion.setText(currentQuestion.getQuestion());
              imgPicture.setImageResource(currentQuestion.getPicture());
 
@@ -131,6 +121,7 @@ public class MainActivity extends ActionBarActivity {
             Toast.makeText(MainActivity.this, "Correct!!", Toast.LENGTH_SHORT).show();
 
             score ++;
+            InGameScore.setText("Your Score so far is " + score);
         }else {
             //you were wrong
 
@@ -142,29 +133,29 @@ public class MainActivity extends ActionBarActivity {
 
     }
     private void endGame(){
-
+        Log.d("Raegan_App", "Reached onResume");
         final AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this)
                 .setTitle("Congratulations")
                 .setMessage("You scored " + score + " points this round! ")
-                .setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
 
 
-                        HighScoreObject highScore = new HighScoreObject(score, "raegan", new Date().getTime());
+                        HighScoreObject highScore = new HighScoreObject(score, "Raegan", new Date().getTime());
 
-                        List<HighScoreObject> highScores = Paper.book().read("highScores", new ArrayList<HighScoreObject>());
+                        List<HighScoreObject> highScores = Paper.book().read("high scores", new ArrayList<HighScoreObject>());
 
                         highScores.add(highScore);
 
-                        Paper.book().write("highscores", highScores);
+                        Paper.book().write("high scores", highScores);
 
                         // return back to intro screen
                         finish();
                     }
                 })
                 .create();
-
         alertDialog.show();
+        Log.d("Raegan_App", "Completed endGame");
                 }
 
 
