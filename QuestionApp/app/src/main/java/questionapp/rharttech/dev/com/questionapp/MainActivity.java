@@ -2,14 +2,14 @@ package questionapp.rharttech.dev.com.questionapp;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.preference.DialogPreference;
-import android.support.v7.app.ActionBarActivity;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.text.InputType;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,7 +31,9 @@ public class MainActivity extends ActionBarActivity {
     private QuestionObject currentQuestion;
     private int index;
     private int score;
+    private String name = "";
     private TextView InGameScore;
+    private MediaPlayer player;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,22 +57,21 @@ public class MainActivity extends ActionBarActivity {
         score = 0;
 
         //onclick listeners
-        btnFalse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Wrong!!", Toast.LENGTH_SHORT).show();
 
-                determineButtonPress(false);
-            }
-        });
         btnTrue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Correct!!", Toast.LENGTH_SHORT).show();
 
                 determineButtonPress(true);
             }
 
+        });
+        btnFalse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                determineButtonPress(false);
+            }
         });
                generateQuestions();
                setUpQuestion();
@@ -81,16 +82,16 @@ public class MainActivity extends ActionBarActivity {
            Log.d("Raegan_App", "Reached generateQuestions");
            questions = new ArrayList<>();
 
-           questions.add(new QuestionObject("Is the capital of England, London?", true, R.drawable.london));
-           questions.add(new QuestionObject("Is the capital of Germany, Berlin?", true, R.drawable.berlin));
-           questions.add(new QuestionObject("Is the capital of Australia, Perth?", false, R.drawable.london));
-           questions.add(new QuestionObject("Is the capital of America, Washington?", true, R.drawable.london));
-           questions.add(new QuestionObject("Is the capital of Brazil, Rio de Janeiro?", false, R.drawable.london));
-           questions.add(new QuestionObject("Is the capital of France, Paris", true, R.drawable.london));
-           questions.add(new QuestionObject("Is the capital of Russia, Sochi?", false, R.drawable.london));
-           questions.add(new QuestionObject("Is the capital of Iceland, Reykjavik?", true, R.drawable.london));
-           questions.add(new QuestionObject("Is the capital of China, Shanghai?", false, R.drawable.london));
-           questions.add(new QuestionObject("Is the capital of India, New Delhi?", true, R.drawable.london));
+           questions.add(new QuestionObject("Is this the Avengers logo?", true, R.drawable.avengers));
+           questions.add(new QuestionObject("Is this a symbol of a Transformer?", true, R.drawable.autobot2));
+           questions.add(new QuestionObject("Is this the symbol of Spiderman?", false, R.drawable.superman));
+           questions.add(new QuestionObject("Is this the symbol of Wonder Woman?", true, R.drawable.women));
+           questions.add(new QuestionObject("Is this the symbol of Flash?", false, R.drawable.captainmarvel));
+           questions.add(new QuestionObject("Is this the Skeletor logo?", false, R.drawable.punisher));
+           questions.add(new QuestionObject("Is this the symbol of Green Lantern?", true, R.drawable.greenlantern));
+           questions.add(new QuestionObject("Is this the Incredibles logo?", false, R.drawable.catwomen));
+           questions.add(new QuestionObject("Is this the symbol of Captain America?", true, R.drawable.captain));
+           questions.add(new QuestionObject("Is this the symbol of Dead Pool?", true, R.drawable.deadpool));
            Log.d("Raegan_App", "Completed generateQuestions");
     }
      private void setUpQuestion(){
@@ -117,12 +118,16 @@ public class MainActivity extends ActionBarActivity {
         boolean expectedAnswer = currentQuestion.isAnswer();
 
         if (answer == expectedAnswer) {
+            player = MediaPlayer.create(MainActivity.this, R.raw.good);
+            player.start();
             //you were right
             Toast.makeText(MainActivity.this, "Correct!!", Toast.LENGTH_SHORT).show();
 
             score ++;
             InGameScore.setText("Your Score so far is " + score);
         }else {
+            player = MediaPlayer.create(MainActivity.this, R.raw.bad);
+            player.start();
             //you were wrong
 
             Toast.makeText(MainActivity.this, "Wrong!!", Toast.LENGTH_SHORT).show();
@@ -132,32 +137,53 @@ public class MainActivity extends ActionBarActivity {
         setUpQuestion();
 
     }
-    private void endGame(){
+    private void endGame() {
         Log.d("Raegan_App", "Reached onResume");
-        final AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this)
-                .setTitle("Congratulations")
-                .setMessage("You scored " + score + " points this round! ")
-                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Congratulations!");
+        builder.setMessage("You scored " + score + " points this round." + "\n\n" + "Please enter your name.");
 
+        // Set up the input
+        final EditText input = new EditText(this);
 
-                        HighScoreObject highScore = new HighScoreObject(score, "Raegan", new Date().getTime());
+        // Specify the type of input expected
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
+        builder.setView(input);
 
-                        List<HighScoreObject> highScores = Paper.book().read("high scores", new ArrayList<HighScoreObject>());
+        // Set up the buttons
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                name = input.getText().toString();
 
-                        highScores.add(highScore);
+                // New high score and user name
+                HighScoreObject highScore = new HighScoreObject(score, name, new Date().getTime());
 
-                        Paper.book().write("high scores", highScores);
+                // Get user prefs
+                List<HighScoreObject> highScores = Paper.book().read("High scores", new ArrayList<HighScoreObject>());
 
-                        // return back to intro screen
-                        finish();
-                    }
-                })
-                .create();
-        alertDialog.show();
+                // Add item - scores
+                highScores.add(highScore);
+
+                // Save again
+                Paper.book().write("High scores", highScores);
+
+                // Return back to the introduction screen
+                finish();
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+
+                // Return back to the introduction screen
+                finish();
+            }
+        });
+        builder.show();
         Log.d("Raegan_App", "Completed endGame");
-                }
-
+    }
 
     }
 

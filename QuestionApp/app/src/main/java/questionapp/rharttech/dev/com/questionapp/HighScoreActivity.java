@@ -31,11 +31,13 @@ public class HighScoreActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_high_score);
 
+        listView = (ListView)findViewById(R.id.listView);
+
         Paper.init(this);
 
-        highscores = Paper.book().read("high scores", new ArrayList<HighScoreObject>());
+        highscores = Paper.book().read("High scores", new ArrayList<HighScoreObject>());
 
-        Toast.makeText(this, "number = " + highscores.size(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Number of high scores = " + highscores.size(), Toast.LENGTH_SHORT).show();
 
         HighscoreAdapter adapter = new HighscoreAdapter(highscores);
 
