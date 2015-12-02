@@ -1,3 +1,4 @@
+<!-- Introduction Screen Main Menu -->
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -6,6 +7,8 @@
     android:background="@drawable/back2"
     tools:context=".IntroductionActivity">
 
+    <!-- All styling including text, images and buttons -->
+    <!-- Display Current High Score -->
     <TextView
         android:id="@+id/bestScore"
         android:paddingTop="10dp"
@@ -16,11 +19,11 @@
         android:textSize="20sp"
         android:gravity="center"
         android:background="#000000"
-         />
-
+        />
+    <!-- Display Title-->
     <TextView
         android:id="@+id/lblTitle"
-        android:text="SUPERHERO GAME"
+        android:text="SUPERHERO LOGO"
         android:textStyle="bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,7 +32,7 @@
         android:textColor="#FFFFFF"
         android:gravity="center"
         />
-
+    <!-- Display Play Button -->
     <Button
         android:id="@+id/btnPlay"
         android:gravity="center"
@@ -41,7 +44,7 @@
         android:layout_marginTop="20dp"
         android:textColor="#000000"
         />
-
+    <!-- Display High Score Button -->
     <Button
         android:id="@+id/btnHighScore"
         android:gravity="center"
@@ -54,7 +57,7 @@
         android:layout_marginTop="20dp"
         android:textColor="#000000"
         />
-
+    <!-- Display About Button -->
     <Button
         android:id="@+id/btnAbout"
         android:gravity="center"
@@ -67,7 +70,7 @@
         android:layout_marginTop="20dp"
         android:textColor="#000000"
         />
-
+    <!-- Display Clear Scores Button -->
     <Button
         android:id="@+id/btnClear"
         android:gravity="center"

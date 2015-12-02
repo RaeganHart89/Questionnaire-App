@@ -1,39 +1,43 @@
 package questionapp.rharttech.dev.com.questionapp;
-
-import android.support.v7.app.ActionBarActivity;
+// Required Imports
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
-import android.view.MenuItem;
-
+import android.view.View;
+import android.widget.Button;
 
 public class ProfileActivity extends ActionBarActivity {
+    //Variables
+    private Button feedback;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_profile, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        // onCreate method to set up activity
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_profile);
+            feedback = (Button) findViewById(R.id.btn_feedback);
+            feedback.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    sendFeedback();
+                }
+            });
+        }
+        // Set-up menu for activity
+        @Override
+        public boolean onCreateOptionsMenu(Menu menu) {
+            // Inflate the menu; this adds items to the action bar if it is present.
+            getMenuInflater().inflate(R.menu.menu_main, menu);
             return true;
         }
-
-        return super.onOptionsItemSelected(item);
+        //Start a new activity for sending a feedback email
+        private void sendFeedback() {
+            final Intent _Intent = new Intent(android.content.Intent.ACTION_SEND);
+            _Intent.setType("text/plain");
+            _Intent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{ getString(R.string.mail_feedback_email) });
+            _Intent.putExtra(android.content.Intent.EXTRA_SUBJECT, getString(R.string.mail_feedback_subject));
+            _Intent.putExtra(android.content.Intent.EXTRA_TEXT, getString(R.string.mail_feedback_message));
+            startActivity(Intent.createChooser(_Intent, getString(R.string.title_send_feedback)));
+        }
     }
-}

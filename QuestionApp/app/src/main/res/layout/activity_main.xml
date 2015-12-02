@@ -1,9 +1,12 @@
+<!-- Main Activity Screen-->
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000000">
 
+    <!-- All styling including text, images and buttons -->
+    <!-- Display Current Question -->
     <TextView
         android:id="@+id/lblQuestion"
         android:text="ANSWER THE QUESTION"
@@ -14,7 +17,7 @@
         android:textSize="22sp"
         android:gravity="center"
         />
-
+    <!-- Display Current Logo -->
     <ImageView
         android:id="@+id/imgPicture"
         android:layout_width="200dp"
@@ -23,6 +26,7 @@
         android:layout_above="@id/lblQuestion"
         android:layout_centerHorizontal="true"
         android:layout_margin="30dp"/>
+    <!-- Display True Button -->
     <Button
         android:id="@+id/btnTrue"
         android:layout_width="150dp"
@@ -33,6 +37,7 @@
         android:text="TRUE"
         android:textSize="24sp"
         android:padding="10dp"/>
+    <!-- Display False Button -->
     <Button
         android:id="@+id/btnFalse"
         android:layout_width="150dp"
@@ -43,7 +48,7 @@
         android:text="FALSE"
         android:textSize="24sp"
         android:padding="10dp"/>
-
+    <!-- Display Current Score -->
     <TextView
         android:id="@+id/InGameScore"
         android:textColor="#FFFFFF"
@@ -54,5 +59,17 @@
         android:textSize="22sp"
         android:gravity="center"
         />
-
+    <!-- Displays Progress Bar -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="false"
+        android:layout_below="@+id/InGameScore"
+        android:layout_centerVertical="true"
+        android:layout_margin="20dp"
+        android:max="100"
+        android:progress="50"
+        />
 </RelativeLayout>

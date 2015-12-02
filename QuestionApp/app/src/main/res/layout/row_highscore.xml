@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!-- Highscore Screen -->
+<!-- All styling including text, images and buttons -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    
+
+    <!-- Display Player High Scores -->
     <TextView
         android:id="@+id/lblTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:textSize="16sp"
+        android:textColor="#D50000"
         android:text="4 - raegan - 18th November 2015"
         />
 

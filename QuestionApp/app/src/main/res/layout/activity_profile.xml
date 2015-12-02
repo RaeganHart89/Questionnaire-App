@@ -1,9 +1,18 @@
+<!-- Profile Screen -->
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#424242">
-
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="#FFFFFF"
+    tools:context=".MainActivity"
+    >
+    <!-- All styling including text, images and buttons -->
+    <!-- Display Logo Picture -->
     <ImageView
         android:id="@+id/imgPicture"
         android:layout_width="100dp"
@@ -12,7 +21,7 @@
         android:layout_alignParentTop="true"
         android:layout_margin="30dp"
         />
-
+    <!-- Display Personal Information Title -->
     <TextView
         android:id="@+id/lblTitle"
         android:text="Personal Information"
@@ -20,12 +29,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/imgPicture"
         android:textSize="22sp"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         android:gravity="center"
         />
-
+    <!-- Display Name -->
     <TextView
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/imgPicture"
@@ -37,7 +45,7 @@
         android:textSize="32sp"
         android:textColor="#2196F3"
         />
-
+    <!-- Display Birthday Logo  -->
     <ImageView
         android:id="@+id/imgBirthday"
         android:layout_width="40dp"
@@ -45,7 +53,9 @@
         android:src="@drawable/birthday"
         android:layout_below="@id/lblTitle"
         android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"/>
+        android:layout_marginRight="30dp"
+        />
+    <!-- Display Birthday -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -58,7 +68,7 @@
         android:textSize="16sp"
         android:textColor="#2196F3"
         />
-
+    <!-- Display Location Logo  -->
     <ImageView
         android:id="@+id/imgLocation"
         android:layout_width="40dp"
@@ -66,8 +76,9 @@
         android:src="@drawable/location"
         android:layout_below="@id/imgBirthday"
         android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"/>
-
+        android:layout_marginRight="30dp"
+        />
+    <!-- Display Location  -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -78,8 +89,9 @@
         android:gravity="center_vertical"
         android:text="Bath, England"
         android:textSize="16sp"
-        android:textColor="#2196F3" />
-
+        android:textColor="#2196F3"
+        />
+    <!-- Display World Logo  -->
     <ImageView
         android:id="@+id/imgWorld"
         android:layout_width="40dp"
@@ -87,8 +99,9 @@
         android:src="@drawable/world"
         android:layout_below="@id/imgLocation"
         android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"/>
-
+        android:layout_marginRight="30dp"
+        />
+    <!-- Display Email -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -97,9 +110,11 @@
         android:layout_toRightOf="@id/imgWorld"
         android:layout_marginLeft="15dp"
         android:gravity="center_vertical"
-        android:text="www.rharttech.com"
+        android:text="www.r.hart.tech.com"
         android:textSize="16sp"
-        android:textColor="#2196F3" />
+        android:textColor="#2196F3"
+        />
+    <!-- Display Twitter Logo  -->
     <ImageView
         android:id="@+id/imgTwitter"
         android:layout_width="40dp"
@@ -107,9 +122,11 @@
         android:src="@drawable/twitter"
         android:layout_below="@id/imgWorld"
         android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"/>
-
+        android:layout_marginRight="30dp"
+        />
+    <!-- Display Twitter ID  -->
     <TextView
+        android:id="@+id/Twitter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/imgTwitter"
@@ -119,7 +136,18 @@
         android:gravity="center_vertical"
         android:text="raeghart89"
         android:textSize="16sp"
-        android:textColor="#2196F3" />
-
+        android:textColor="#2196F3"
+        />
+    <!-- Display Send Feedback Button  -->
+    <Button
+        android:id="@+id/btn_feedback"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imgTwitter"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"
+        android:text="@string/button_feedback"
+        />
 
 </RelativeLayout>
